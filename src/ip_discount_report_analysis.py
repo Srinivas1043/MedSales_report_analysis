@@ -1,9 +1,8 @@
 import pandas as pd 
 import streamlit as st
 import plotly.express as px
-
-df = pd.read_excel('../data/final/Ip_Sales_Report_Final.xlsx')
-st.title('SIMS Sales Report Dashboard')
+df = pd.read_excel('../data/final/Ip_Discount_Report_Final.xlsx')
+st.title('SIMS Discount Report Dashboard')
 st.subheader('Dataset')
 st.dataframe(df)
 st.subheader('Data Numerical Statistic')
@@ -24,6 +23,5 @@ num_feat_pie = st.selectbox('Select Numerical Feature for pie chart ', df.select
 cat_feat_pie = st.selectbox('Select Categorical Feature for pie chart ', df.select_dtypes(exclude ='number').columns)  
 fig_pie = px.pie(df, values = num_feat_pie, names = cat_feat_pie,title = f'Pie Chart Visualization for{num_feat_pie} vs {cat_feat_pie}' )
 st.plotly_chart(fig_pie,use_container_width = True)
-
 
 

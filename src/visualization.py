@@ -1,2 +1,3 @@
 import os 
-os.system('cmd /k "streamlit run src/ip_sales_details_analysis.py"')
+filename=input("kindly enter the file name with proper spelling: ")
+os.system(f'cmd /k "streamlit run src/{filename}.py"')
