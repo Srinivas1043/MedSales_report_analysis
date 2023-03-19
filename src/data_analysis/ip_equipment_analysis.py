@@ -1,7 +1,7 @@
 import pandas as pd 
 import streamlit as st
 import plotly.express as px
-df = pd.read_excel('../data/final/Ip_Equipment_Final.xlsx')
+df = pd.read_excel('../../data/final/Ip_Equipment_Final.xlsx')
 st.title('SIMS Equipments Attrition  Dashboard')
 st.subheader('Dataset')
 st.dataframe(df)
