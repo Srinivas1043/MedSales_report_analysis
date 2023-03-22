@@ -39,13 +39,13 @@ def get_forecast_results(df, model_code, forecast_horizon):
                     yaxis_title='', xaxis_title='',
                     title = "")
 
-    #Create a Plotly figure with the decomposition plot
-    decomp_fig = plot_model(plot = 'decomp', return_fig = True,
-                 fig_kwargs = fig_kwargs, data_kwargs = data_kwargs)
-    decomp_fig.update_layout(height = 600,
-                    margin={"r":1,"t":18,"l":1,"b":1},
-                    plot_bgcolor = '#FFFFFF',
-                    title = '')
+    # #Create a Plotly figure with the decomposition plot
+    # decomp_fig = plot_model(plot = 'decomp', return_fig = True,
+    #              fig_kwargs = fig_kwargs, data_kwargs = data_kwargs)
+    # decomp_fig.update_layout(height = 600,
+    #                 margin={"r":1,"t":18,"l":1,"b":1},
+    #                 plot_bgcolor = '#FFFFFF',
+    #                 title = '')
 
     #Create a Plotly figure with the ACF plot
     acf_fig = plot_model(plot = 'acf', return_fig = True,
@@ -63,7 +63,7 @@ def get_forecast_results(df, model_code, forecast_horizon):
     forecast_dict = {
         'metrics': metrics,
         'forecast_fig': forecast_fig,
-        'decomp_fig': decomp_fig,
+        # 'decomp_fig': decomp_fig,
         'acf_fig': acf_fig,
         'diag_fig': diagnostics_fig
     }
