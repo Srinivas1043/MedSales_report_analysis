@@ -1,0 +1,6 @@
+numpy==1.21.6
+pandas==1.4.2
+plotly==5.13.1
+pycaret==3.0.0
+statsmodels==0.13.2
+~lotly==5.6.0

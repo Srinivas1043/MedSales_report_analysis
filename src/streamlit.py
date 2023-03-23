@@ -34,7 +34,7 @@ st.plotly_chart(fig, use_container_width = True)
 cols_insurance = ['TOTAL AMOUNT','DEPOSIT']
 df = df[df.columns & cols_insurance]
 with container_cat:
-        insurance_cat = st.selectbox(label = 'Select a Insurance name', options = df.columns)   
+        insurance_cat = st.selectbox(label = 'Select any column to visualise', options = df.columns)   
 
 st.markdown(f'#### {insurance_cat} Electricity Generation Forecast in {cols_insurance} (MW)')
 
