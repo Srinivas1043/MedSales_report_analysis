@@ -81,9 +81,7 @@ def ip_scatter_total_discount():
 def update_graph(value):
     dff = ip_discount_report_df[ip_discount_report_df['INSURANCE NAME']==value]
     return px.line(dff, x='BILL DATE', y='DISCOUNT')
-theme_switch = ThemeSwitchAIO(
-    aio_id="theme", themes=[dbc.themes.FLATLY, dbc.themes.CYBORG]
-)
+
 
 
 ip_discount_report = html.Div([
