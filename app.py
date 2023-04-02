@@ -117,8 +117,6 @@ ip_sales_details_df = pd.read_excel('data/final/Ip_Sales_Details_Final.xlsx')
 def update_graph(value):
     dff = ip_discount_report_df[ip_discount_report_df['INSURANCE NAME']==value]
     return px.line(dff, x='BILL DATE', y='DISCOUNT')
-
-def ip_sales()
 ip_sales_details = html.Div([
     html.H1("IP Sales Details"),
     html.Br(),
