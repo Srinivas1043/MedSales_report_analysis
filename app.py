@@ -79,7 +79,8 @@ def ip_discount_bar():
 
 def ip_scatter_total_discount():
     return px.scatter(ip_discount_report_df,x='TOTAL AMOUNT',y='DISCOUNT',color = 'INSURANCE NAME')
-ip_discount_report = html.Div([
+ip_discount_report = html.Div
+([
     html.H1("IP Discount Report"),
     html.Br(),
     # insert code for IP Discount Report final visualization here
@@ -94,7 +95,7 @@ ip_discount_report = html.Div([
     html.P('To get information about the discount value provided by each insurance company'),
     dcc.Graph(id ='ip_bar-chart',figure= ip_discount_bar()),
     html.H6('Total Amount vs Discount'),
-    html.P('The discount provided to total amount for each patient by insurance company is visualized here')
+    html.P('The discount provided to total amount for each patient by insurance company is visualized here'),
     dcc.Graph(id='ip_scatter_total_discount',figure=ip_scatter_total_discount()) 
 ])
 
