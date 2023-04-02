@@ -64,7 +64,7 @@ def toggle_sidebar(n_clicks, sidebar_style, content_style):
 ip_discount_report_df =pd.read_excel('data/final/Ip_Discount_Report_Final.xlsx')
 
 @callback(
-    Output('graph-content', 'figure'),
+    Output('discount-graph-content', 'figure'),
     Input('dropdown-selection', 'value')
 )
 def update_graph(value):
@@ -79,6 +79,7 @@ def ip_discount_bar():
 
 def ip_scatter_total_discount():
     return px.scatter(ip_discount_report_df,x='TOTAL AMOUNT',y='DISCOUNT',color = 'INSURANCE NAME')
+
 ip_discount_report = html.Div
 ([
     html.H1("IP Discount Report"),
@@ -87,13 +88,16 @@ ip_discount_report = html.Div
     html.H3("Insurance Company Name"),
     html.P('To visualise the discount given by each insurance company with regards to date'),
     dcc.Dropdown(ip_discount_report_df['INSURANCE NAME'].unique(), 'Insurance Name', id='dropdown-selection'),
-    dcc.Graph(id='graph-content'),
+    dcc.Graph(id='discount-graph-content'),
+
     html.H4('Total Amount vs Insurance company '),
     html.P('To explore the contribution of each insurance company to attain total amount'),
     dcc.Graph(id='ip_pie-chart',figure = ip_discount_pie_chart()),
+
     html.H5('Discount VS Insurance Company'),
     html.P('To get information about the discount value provided by each insurance company'),
     dcc.Graph(id ='ip_bar-chart',figure= ip_discount_bar()),
+
     html.H6('Total Amount vs Discount'),
     html.P('The discount provided to total amount for each patient by insurance company is visualized here'),
     dcc.Graph(id='ip_scatter_total_discount',figure=ip_scatter_total_discount()) 
@@ -110,17 +114,41 @@ equipment_ip_sales_detail = html.Div([
 
 # define page content for IP Sales Details sheet
 ip_sales_details_df = pd.read_excel('data/final/Ip_Sales_Details_Final.xlsx')
-@callback(
-    Output('graph-content', 'figure'),
-    Input('dropdown-selection', 'value')
-)
-def update_graph(value):
-    dff = ip_discount_report_df[ip_discount_report_df['INSURANCE NAME']==value]
-    return px.line(dff, x='BILL DATE', y='DISCOUNT')
+def admit_discharge_date_bill_amount_analysis():
+    ip_sales_details_df['duration'] = ip_sales_details_df['dischargedatetime'] -ip_sales_details_df['admitdatetime']
+    ip_sales_details_df['numberofdays'] = ip_sales_details_df['duration'].apply(pd.to_timedelta).dt.days
+    return px.scatter(ip_sales_details_df, x='numberofdays', y='billamount', color="Company", hover_name="Specialisation", size='numberofdays')
+
+def ip_netamt_specialisation_bar():
+    return px.bar(ip_sales_details_df,y= 'Specialisation',x='netamount',color ='category')
+
+def ip_netamt_cat_bar():
+    return px.bar(ip_sales_details_df,y= 'category',x='netamount',color ='Specialisation')
+
+def ip_net_amt_company_bar():
+    return px.bar(ip_sales_details_df,y = 'Company',x='netamount',color ='Area')
+
+def ip_package_fees_specialisation_bar():
+    return px.bar(ip_sales_details_df,y='Specialisation',x='PackageFees',color ='category')
+
+def ip_package_fees_cat_bar():
+    return px.bar(ip_sales_details_df,y='category',x='PackageFees',color ='Specialisation')
+
+def ip_package_fees_company_bar():
+    return px.bar(ip_sales_details_df,y ='Company',x='PackageFees',color ='Area')
+
+
 ip_sales_details = html.Div([
     html.H1("IP Sales Details"),
     html.Br(),
     # insert code for IP Sales Details visualization here
+    dcc.Graph(id='discharge-difference', figure=admit_discharge_date_bill_amount_analysis()),
+    dcc.Graph(id='ip_netamount_specialisation', figure=ip_netamt_specialisation_bar()),
+    dcc.Graph(id='ip_netamount_category', figure=ip_netamt_cat_bar()),
+    dcc.Graph(id='ip_netamount_company', figure=ip_net_amt_company_bar()),
+    dcc.Graph(id='ip_packagefees_specialisation', figure=ip_package_fees_specialisation_bar()),
+    dcc.Graph(id='ip_packagefees_category', figure=ip_package_fees_cat_bar()),
+    dcc.Graph(id='ip_packagefees_company', figure=ip_package_fees_company_bar()),
 ])
 
 
