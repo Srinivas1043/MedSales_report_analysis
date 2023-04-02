@@ -74,6 +74,11 @@ def update_graph(value):
 def ip_discount_pie_chart():
     return px.pie(ip_discount_report_df,values='TOTAL AMOUNT',names = 'INSURANCE NAME')
 
+def ip_discount_bar():
+    return px.bar(ip_discount_report_df,x='INSURANCE NAME',y='DISCOUNT')
+
+def ip_scatter_total_discount():
+    return px.scatter(ip_discount_report_df,x='TOTAL AMOUNT',y='DISCOUNT',color = 'INSURANCE NAME')
 ip_discount_report = html.Div([
     html.H1("IP Discount Report"),
     html.Br(),
@@ -84,9 +89,15 @@ ip_discount_report = html.Div([
     dcc.Graph(id='graph-content'),
     html.H4('Total Amount vs Insurance company '),
     html.P('To explore the contribution of each insurance company to attain total amount'),
-    dcc.Graph(id='pie-chart',figure = ip_discount_pie_chart())
-    
+    dcc.Graph(id='ip_pie-chart',figure = ip_discount_pie_chart()),
+    html.H5('Discount VS Insurance Company'),
+    html.P('To get information about the discount value provided by each insurance company'),
+    dcc.Graph(id ='ip_bar-chart',figure= ip_discount_bar()),
+    html.H6('Total Amount vs Discount'),
+    html.P('The discount provided to total amount for each patient by insurance company is visualized here')
+    dcc.Graph(id='ip_scatter_total_discount',figure=ip_scatter_total_discount()) 
 ])
+
 
 # define page content for Equipment - IP Sales Detail sheet
 ip_equipment_df =pd.read_excel('data/final/Ip_Equipment_Final.xlsx')
@@ -98,6 +109,15 @@ equipment_ip_sales_detail = html.Div([
 
 # define page content for IP Sales Details sheet
 ip_sales_details_df = pd.read_excel('data/final/Ip_Sales_Details_Final.xlsx')
+@callback(
+    Output('graph-content', 'figure'),
+    Input('dropdown-selection', 'value')
+)
+def update_graph(value):
+    dff = ip_discount_report_df[ip_discount_report_df['INSURANCE NAME']==value]
+    return px.line(dff, x='BILL DATE', y='DISCOUNT')
+
+def ip_sales()
 ip_sales_details = html.Div([
     html.H1("IP Sales Details"),
     html.Br(),
