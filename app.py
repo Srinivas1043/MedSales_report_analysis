@@ -6,8 +6,9 @@ from dash import html
 from dash import Dash, html, dcc, callback, Output, Input
 import plotly.express as px
 
+
 # define app and server
-app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP],suppress_callback_exceptions=True)
+app = dash.Dash(__name__, external_stylesheets=[dbc.themes.FLATLY],suppress_callback_exceptions=True)
 server = app.server
 
 # define sidebar
@@ -19,6 +20,7 @@ sidebar = html.Div(
         (
     
             [
+                dbc.NavLink("Home", href="/", active="exact"),
                 dbc.NavLink("IP Discount Report", href="/ip_discount_report", active="exact"),
                 dbc.NavLink("Equipment - IP Sales Detail", href="/equipment_ip_sales_detail", active="exact"),
                 dbc.NavLink("IP Sales Details",href="/ip_sales_details", active="exact"),
@@ -63,13 +65,6 @@ def toggle_sidebar(n_clicks, sidebar_style, content_style):
 # define page content for IP Discount Report Final sheet
 ip_discount_report_df =pd.read_excel('data/final/Ip_Discount_Report_Final.xlsx')
 
-@callback(
-    Output('discount-graph-content', 'figure'),
-    Input('dropdown-selection', 'value')
-)
-def update_graph(value):
-    dff = ip_discount_report_df[ip_discount_report_df['INSURANCE NAME']==value]
-    return px.line(dff, x='BILL DATE', y='DISCOUNT')
 
 def ip_discount_pie_chart():
     return px.pie(ip_discount_report_df,values='TOTAL AMOUNT',names = 'INSURANCE NAME')
@@ -79,9 +74,19 @@ def ip_discount_bar():
 
 def ip_scatter_total_discount():
     return px.scatter(ip_discount_report_df,x='TOTAL AMOUNT',y='DISCOUNT',color = 'INSURANCE NAME')
+@callback(
+    Output('discount-graph-content', 'figure'),
+    Input('dropdown-selection', 'value')
+)
+def update_graph(value):
+    dff = ip_discount_report_df[ip_discount_report_df['INSURANCE NAME']==value]
+    return px.line(dff, x='BILL DATE', y='DISCOUNT')
+theme_switch = ThemeSwitchAIO(
+    aio_id="theme", themes=[dbc.themes.FLATLY, dbc.themes.CYBORG]
+)
 
-ip_discount_report = html.Div
-([
+
+ip_discount_report = html.Div([
     html.H1("IP Discount Report"),
     html.Br(),
     # insert code for IP Discount Report final visualization here
@@ -186,6 +191,63 @@ ip_sales_summary_report = html.Div([
 ])
 
 
+
+
+# define page content for SIMS Dashboard sheet
+
+cards = dbc.Row([
+    dbc.Col(
+        dbc.Card(
+            dbc.CardBody(
+                [
+                    html.H4("Sales Detail Analysis", className="card-title"),
+                    html.P(f"There are {len(ip_sales_details_df)} rows"),
+                    dbc.Button("Go to Page 1", color="primary", href="/ip_sales_details"),
+                ]
+            ),
+            className="mb-3",
+            style={
+                'background-image': 'url("https://www.absolutdata.com/wp-content/uploads/2022/06/Is-Dark-Data-the-Key-to-Transforming-Your-Business-blog.jpg")',
+                'background-size': 'cover',
+                'background-position': 'center',
+                'color': 'white'
+            }
+        ),
+        width=6,
+        md={'size': 6, 'offset': 0}
+    ),
+    dbc.Col(
+        dbc.Card(
+            dbc.CardBody(
+                [
+                    html.H4("Discount Report Analysis", className="card-title"),
+                    html.P(f"There are {len(ip_discount_report_df)} rows"),
+                    dbc.Button("Go to Page 2", color="primary", href="/ip_discount_report"),
+                ]
+            ),
+            className="mb-3",
+            style={
+                'background-image': 'url("https://www.absolutdata.com/wp-content/uploads/2022/06/Is-Dark-Data-the-Key-to-Transforming-Your-Business-blog.jpg")',
+                'background-size': 'cover',
+                'background-position': 'center',
+                'color': 'white'
+            }
+        ),
+        width=6,
+        md={'size': 6, 'offset': 0}
+    ),
+], className="mb-4")
+
+dashboard_home = html.Div([
+    html.H1("Welcome to SIMS Dashboard"),
+    html.Br(),
+    # insert code for IP Equipment Details visualization here
+    cards
+], className="container")
+
+
+
+
 # define callback to display page content based on URL
 @app.callback(dash.dependencies.Output("page-content", "children"), [dash.dependencies.Input("url", "pathname")])
 def render_page_content(pathname):
@@ -199,8 +261,9 @@ def render_page_content(pathname):
         return ip_sales_report
     elif pathname == "/ip_sales_summary_report":
         return ip_sales_summary_report
+    elif pathname == "/":
+        return dashboard_home
     else:
         return html.H1("404 - Page Not Found")
 if __name__ == "__main__":
     app.run_server(debug=True)
-
