@@ -157,27 +157,21 @@ ip_sales_details = html.Div([
 
 # define page content for IP Sales Report sheet
 ip_sales_report_df = pd.read_excel('data/final/Ip_Sales_Report_Final.xlsx')
+def ip_bill_amount_sales_report_company_bar():
+    return px.line(ip_sales_report_df,y ='BILL AMOUNT',x='datetime',color ='COMPANY')
+def ip_discount_sales_report_company_bar():
+    return px.line(ip_sales_report_df,y ='DISCOUNT',x='datetime',color ='COMPANY')
+def ip__sales_report_company_pie():
+    return px.pie(ip_sales_report_df,values ='BILL AMOUNT',names ='COMPANY')
+
+
 ip_sales_report = html.Div([
     html.H1("IP Sales Report"),
     html.Br(),
     # insert code for IP Sales Report visualization here 
-dcc.Graph(
-        id="ip-sales-chart",
-        figure={
-            "data": [
-                {
-                    "x": ip_sales_report_df['SPECIALISATION'],
-                    "y": ip_sales_report_df['BILL AMOUNT'],
-                    "type": "bar",
-                }
-            ],
-            "layout": {
-                "title": "IP Sales Report by Product",
-                "xaxis": {"title": "Product"},
-                "yaxis": {"title": "Sales"},
-            },
-        },
-    ),
+dcc.Graph(id='ip_bill_amount_sales_report_company_bar', figure=ip_bill_amount_sales_report_company_bar()),
+dcc.Graph(id='ip_discount_sales_report_company_bar', figure=ip_discount_sales_report_company_bar()),
+dcc.Graph(id='ip_sales_report_company_pie', figure=ip__sales_report_company_pie())
 ])
 
 # define page content for IP Sales Summary Report sheet
