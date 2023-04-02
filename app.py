@@ -175,11 +175,32 @@ dcc.Graph(id='ip_sales_report_company_pie', figure=ip__sales_report_company_pie(
 ])
 
 # define page content for IP Sales Summary Report sheet
+# define page content for IP Sales Summary Report sheet
 ip_sales_summary_df = pd.read_excel('data/final/Ip_Sales_Summary_Report_Final.xlsx')
+
+def admit_discharge_room_rent_analysis():
+    ip_sales_summary_df['duration'] = ip_sales_summary_df['DischargeDatetime'] - ip_sales_summary_df['AdmitDatetime']
+    ip_sales_summary_df['numberofdays'] = ip_sales_summary_df['duration'].apply(pd.to_timedelta).dt.days
+    return px.scatter(ip_sales_summary_df, x='numberofdays', y='Room Rent', color="Diagnosis", hover_name="Category", size='Bill Amount')
+
+
+def ip_pharm_diagnosis_bar():
+    return px.bar(ip_sales_summary_df,y ='Diagnosis',x='Pharmacy',color ='State')
+
+def ip_docfees_surgerydept_bar():
+    return px.bar(ip_sales_summary_df,y ='SURGERYTYPE',x='Doctor Fees',color ='Country')
+
+def ip_food_beverages_pie_chart():
+    return px.bar(ip_sales_summary_df,x='Food and Beverages',y = 'Company', color='Test')
+
 ip_sales_summary_report = html.Div([
     html.H1("IP Sales Summary Report"),
     html.Br(),
     # insert code for IP Sales Summary Report visualization here
+    dcc.Graph(id='admit_discharge_room_rent_analysis', figure=admit_discharge_room_rent_analysis()),
+    dcc.Graph(id='ip_pharm_diagnosis_bar', figure=ip_pharm_diagnosis_bar()),
+    dcc.Graph(id='ip_docfees_surgerydept_bar', figure=ip_docfees_surgerydept_bar()),
+    dcc.Graph(id='ip_food_beverages_pie_chart', figure=ip_food_beverages_pie_chart()),
 ])
 
 
