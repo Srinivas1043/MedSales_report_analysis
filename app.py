@@ -491,8 +491,16 @@ cards = dbc.Row([
     ),
 ], className="mb-4")
 
+cover_image = "https://simshospitals.com/wp-content/uploads/2021/09/SIMS-Logo.png"
 dashboard_home = html.Div([
     html.H1("Welcome to SIMS Dashboard"),
+        html.Div([
+        html.Img(src=cover_image, style={'width': '100%'})
+    ], style={'width': '80%','height':'40%'}),
+    html.P("SIMS Hospital is a leading healthcare provider in the region, offering a wide range of medical services and treatments to patients. As with any healthcare provider, understanding sales data is critical to the success of the hospital. Sales data can help SIMS Hospital track trends in patient demand, identify areas for improvement in services or marketing, and forecast revenue."),
+    html.P("To make sense of sales data, SIMS Hospital can conduct sales analysis. This involves collecting and analyzing data on patient visits, treatments, and revenue. Sales analysis can help SIMS Hospital identify key metrics such as patient volumes, revenue by department, and average revenue per patient."),
+    html.P("By conducting sales analysis, SIMS Hospital can gain insights into patient behavior, identify trends in revenue and expenses, and optimize resources to improve profitability. Additionally, sales analysis can help SIMS Hospital identify potential areas for growth, such as expanding services in high-demand departments or targeting specific patient demographics."),
+    html.P("Overall, sales analysis is a critical tool for SIMS Hospital to understand its business and make data-driven decisions that improve patient outcomes and financial performance."),
     html.Br(),
     # insert code for IP Equipment Details visualization here
     cards
