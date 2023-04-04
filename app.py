@@ -3,9 +3,8 @@ import pandas as pd
 import dash_bootstrap_components as dbc
 from dash import dcc
 from dash import html
-from dash import Dash, html, dcc, callback, Output, Input, dash_table
+from dash import html, dcc, callback, Output, Input
 import plotly.express as px
-from dash_bootstrap_templates import ThemeSwitchAIO
 
 
 # define app and server
@@ -142,12 +141,31 @@ ip_discount_report = html.Div([
 ])
 
 
-# define page content for Equipment - IP Sales Detail sheet
-ip_equipment_df =pd.read_excel('data/final/Ip_Equipment_Final.xlsx')
+# define page content for Equipment - IP Detail Final sheet
+ip_equipment_details_df =pd.read_excel('data/final/Ip_Equipment_Details_Final.xlsx')
+
+@callback(
+    Output('equipment', 'figure'),
+    Input('equipment-name-selection', 'value'))
+
+def ip_equipment_update_graph_quantity(value):
+    dff = ip_equipment_details_df[ip_equipment_details_df['Equipment Name']==value]
+    return px.bar(dff, x='DateTime', y='Quantity')
+
+#def ip_equipment_update_graph_amount(value):
+ #   dff = ip_equipment_details_df[ip_equipment_details_df['Equipment Name']==value]
+  #  return px.line(dff, x='DateTime', y='Amount')
+
 equipment_ip_sales_detail = html.Div([
     html.H1("Equipment - IP Sales Detail"),
     html.Br(),
-    # insert code for Equipment - IP Sales Detail visualization here
+    # insert code for Equipment - IP Equipment Detail visualization here
+    html.H3("Equipment Name"),
+    html.P('To visualise the quantity & amount of each equipment with regards to date'),
+    dcc.Dropdown(ip_equipment_details_df['Equipment Name'].unique(), 'Equipment Name', id='equipment-name-selection'),
+    dcc.Graph(id='equipment'),
+
+
 ])
 
 # define page content for IP Sales Details sheet
