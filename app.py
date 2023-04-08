@@ -20,9 +20,10 @@ sidebar = html.Div(
         (
     
             [
-                dbc.NavLink("Home", href="/", active="exact"),
+                         dbc.NavLink("Home", href="/", active="exact"),
                 dbc.NavLink("IP Discount Report", href="/ip_discount_report", active="exact"),
-                dbc.NavLink("Equipment - IP Sales Detail", href="/equipment_ip_sales_detail", active="exact"),
+                dbc.NavLink("Equipment - IP Details Final", href="/ip_equipment_details_final", active="exact"),
+                dbc.NavLink("Equipment - IP Sales Final", href="/ip_equipment_sales_final", active="exact"),
                 dbc.NavLink("IP Sales Details",href="/ip_sales_details", active="exact"),
                 dbc.NavLink("IP Sales Report", href="/ip_sales_report", active="exact"),
                 dbc.NavLink("IP Sales Summary Report",href="/ip_sales_summary_report", active="exact")
@@ -140,33 +141,6 @@ ip_discount_report = html.Div([
     dcc.Graph(id='ip_scatter_total_discount',figure=ip_scatter_total_discount()) 
 ])
 
-
-# define page content for Equipment - IP Detail Final sheet
-ip_equipment_details_df =pd.read_excel('data/final/Ip_Equipment_Details_Final.xlsx')
-
-@callback(
-    Output('equipment', 'figure'),
-    Input('equipment-name-selection', 'value'))
-
-def ip_equipment_update_graph_quantity(value):
-    dff = ip_equipment_details_df[ip_equipment_details_df['Equipment Name']==value]
-    return px.bar(dff, x='DateTime', y='Quantity')
-
-#def ip_equipment_update_graph_amount(value):
- #   dff = ip_equipment_details_df[ip_equipment_details_df['Equipment Name']==value]
-  #  return px.line(dff, x='DateTime', y='Amount')
-
-equipment_ip_sales_detail = html.Div([
-    html.H1("Equipment - IP Sales Detail"),
-    html.Br(),
-    # insert code for Equipment - IP Equipment Detail visualization here
-    html.H3("Equipment Name"),
-    html.P('To visualise the quantity & amount of each equipment with regards to date'),
-    dcc.Dropdown(ip_equipment_details_df['Equipment Name'].unique(), 'Equipment Name', id='equipment-name-selection'),
-    dcc.Graph(id='equipment'),
-
-
-])
 
 # define page content for IP Sales Details sheet
 ip_sales_details_df = pd.read_excel('data/final/Ip_Sales_Details_Final.xlsx')
@@ -422,6 +396,46 @@ ip_sales_summary_report = html.Div([
 ])
 
 
+# define page content for Equipment - IP Sales Detail sheet
+ip_equipment_sales_final_df = pd.read_excel('data/final/Ip_Equipment_Sales_Final.xlsx')
+
+def analyse_amt_vs_time_equipment_sales():
+    return px.line(ip_equipment_sales_final_df,y ='amt',x='DateTime',color ='specs')
+
+
+def analyse_bar_specs_equipment_sales():
+    return px.bar(ip_equipment_sales_final_df,y ='amt',x='specs')
+
+def analyse_bar_specialisation_equipment_sales():
+    return px.bar(ip_equipment_sales_final_df,y ='amt',x='specialisation')
+    
+ip_equipment_sales_final = html.Div([
+    html.H1("IP Sales Summary Report"),
+    html.Br(),
+    
+    
+    # insert code for IP Sales Summary Report visualization here
+    html.H4('Equipment Amount vs Date'),
+    html.P('The visualization shows the bar plot of equipment amount of the hospital and the date.'),
+    dcc.Graph(id='analyse_amt_vs_time_equipment_sales', figure=analyse_amt_vs_time_equipment_sales()),
+    dcc.Graph(id='analyse_bar_specs_equipment_sales', figure=analyse_bar_specs_equipment_sales()),
+    dcc.Graph(id='analyse_bar_specialisation_equipment_sales', figure=analyse_bar_specialisation_equipment_sales()),
+
+   ]) 
+
+
+# define page content for Equipment - IP  Detail sheet
+
+ip_equipment_details_final_df = pd.read_excel('data/final/Ip_Equipment_Details_Final.xlsx')
+
+ip_equipment_details_final = html.Div([
+    html.H1("IP Sales Summary Report"),
+    html.Br(),
+   
+    
+    # insert code for IP Sales Summary Report visualization here
+   ])
+
 
 
 # define page content for SIMS Dashboard sheet
@@ -515,6 +529,8 @@ dashboard_home = html.Div([
         html.Div([
         html.Img(src=cover_image, style={'width': '100%'})
     ], style={'width': '80%','height':'40%'}),
+          html.Br(),
+            html.Br(),
     html.P("SIMS Hospital is a leading healthcare provider in the region, offering a wide range of medical services and treatments to patients. As with any healthcare provider, understanding sales data is critical to the success of the hospital. Sales data can help SIMS Hospital track trends in patient demand, identify areas for improvement in services or marketing, and forecast revenue."),
     html.P("To make sense of sales data, SIMS Hospital can conduct sales analysis. This involves collecting and analyzing data on patient visits, treatments, and revenue. Sales analysis can help SIMS Hospital identify key metrics such as patient volumes, revenue by department, and average revenue per patient."),
     html.P("By conducting sales analysis, SIMS Hospital can gain insights into patient behavior, identify trends in revenue and expenses, and optimize resources to improve profitability. Additionally, sales analysis can help SIMS Hospital identify potential areas for growth, such as expanding services in high-demand departments or targeting specific patient demographics."),
@@ -532,8 +548,6 @@ dashboard_home = html.Div([
 def render_page_content(pathname):
     if pathname == "/ip_discount_report":
         return ip_discount_report 
-    elif pathname == "/equipment_ip_sales_detail":
-        return equipment_ip_sales_detail
     elif pathname == "/ip_sales_details":
         return ip_sales_details
     elif pathname =="/ip_sales_report":
@@ -542,7 +556,12 @@ def render_page_content(pathname):
         return ip_sales_summary_report
     elif pathname == "/":
         return dashboard_home
+    elif pathname=='/ip_equipment_sales_final':
+        return ip_equipment_sales_final
+    elif pathname=='/ip_equipment_details_final':
+        return ip_equipment_details_final
     else:
         return html.H1("404 - Page Not Found")
+    
 if __name__ == "__main__":
     app.run_server(debug=True)
