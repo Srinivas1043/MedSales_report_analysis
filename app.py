@@ -410,7 +410,7 @@ def analyse_bar_specialisation_equipment_sales():
     return px.bar(ip_equipment_sales_final_df,y ='amt',x='specialisation')
     
 ip_equipment_sales_final = html.Div([
-    html.H1("IP Sales Summary Report"),
+    html.H1("IP Equipment Sales Report"),
     html.Br(),
     
     
@@ -420,7 +420,6 @@ ip_equipment_sales_final = html.Div([
     dcc.Graph(id='analyse_amt_vs_time_equipment_sales', figure=analyse_amt_vs_time_equipment_sales()),
     dcc.Graph(id='analyse_bar_specs_equipment_sales', figure=analyse_bar_specs_equipment_sales()),
     dcc.Graph(id='analyse_bar_specialisation_equipment_sales', figure=analyse_bar_specialisation_equipment_sales()),
-
    ]) 
 
 
@@ -428,12 +427,22 @@ ip_equipment_sales_final = html.Div([
 
 ip_equipment_details_final_df = pd.read_excel('data/final/Ip_Equipment_Details_Final.xlsx')
 
+def quantity_vs_datetime():
+    return px.line(ip_equipment_details_final_df, x= 'DateTime', y='Quantity', color='Equipment Name')
+
+def amount_vs_datetime():
+    return px.line(ip_equipment_details_final_df, x= 'DateTime', y='Amount', color='Equipment Name')
 ip_equipment_details_final = html.Div([
-    html.H1("IP Sales Summary Report"),
+    html.H1("IP Equipment Details Report"),
     html.Br(),
    
     
     # insert code for IP Sales Summary Report visualization here
+    dcc.Graph(id='amount_vs_datetime', figure=amount_vs_datetime()),
+    dcc.Graph(id='quantity_vs_datetime', figure=quantity_vs_datetime()),
+    
+
+    
    ])
 
 
