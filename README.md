@@ -25,8 +25,11 @@ Overall, sales analysis is a critical tool for SIMS Hospital to understand its b
 ## Usage
 
 4. In the src\cleaning-notebooks, You can use the notebooks to clean the data that is provided according to the data that is required for the visualization. 
-5. The data is piped through raw -> 
-4. Run the app.
+5. The data is piped through raw -> processed -> final
+6. The final data used in app.py to visualize.
+7. The raw data is never touched and used for ingestion purposed
+8. However the processed data is the cleaned and silver layer data which comprises of manipulated data used for visualization.
+9. Run the app.
 
 `python app.py`
 
