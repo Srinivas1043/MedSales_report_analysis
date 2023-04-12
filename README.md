@@ -11,7 +11,7 @@ By conducting sales analysis, SIMS Hospital can gain insights into patient behav
 
 Overall, sales analysis is a critical tool for SIMS Hospital to understand its business and make data-driven decisions that improve patient outcomes and financial performance.
 
-![alt text]https://www.leadsquared.com/wp-content/uploads/2021/11/what_is_sales_analysis_banner.png
+![alt text](https://www.leadsquared.com/wp-content/uploads/2021/11/what_is_sales_analysis_banner.png)
 
 ## Installation
 
