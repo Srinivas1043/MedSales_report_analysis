@@ -38,6 +38,10 @@ Overall, sales analysis is a critical tool for SIMS Hospital to understand its b
 
 `python app.py`
 
+## Data Architecture
+
+![alt text]()
+
 ## Acknowledgements
 
 Data - Provided by SIMS
