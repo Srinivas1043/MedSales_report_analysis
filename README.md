@@ -1,5 +1,8 @@
 # SIMS Medical Sales analysis WebApp
 
+![alt text](https://simshospitals.com/wp-content/uploads/thegem-logos/logo_33096148134071ee02ed827034866eaa_1x.png)
+
+
 SIMS Hospital is a leading healthcare provider in the region, offering a wide range of medical services and treatments to patients. As with any healthcare provider, understanding sales data is critical to the success of the hospital. Sales data can help SIMS Hospital track trends in patient demand, identify areas for improvement in services or marketing, and forecast revenue.
 
 To make sense of sales data, SIMS Hospital can conduct sales analysis. This involves collecting and analyzing data on patient visits, treatments, and revenue. Sales analysis can help SIMS Hospital identify key metrics such as patient volumes, revenue by department, and average revenue per patient.
