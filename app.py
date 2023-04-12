@@ -416,9 +416,13 @@ ip_equipment_sales_final = html.Div([
     
     # insert code for IP Sales Summary Report visualization here
     html.H4('Equipment Amount vs Date'),
-    html.P('The visualization shows the bar plot of equipment amount of the hospital and the date.'),
+    html.P('The visualization shows the line plot of equipment amount of the hospital and the date.'),
     dcc.Graph(id='analyse_amt_vs_time_equipment_sales', figure=analyse_amt_vs_time_equipment_sales()),
+    html.H4('Type of Tests'),
+    html.P('The visualization shows the bar plot of the type of tests'),
     dcc.Graph(id='analyse_bar_specs_equipment_sales', figure=analyse_bar_specs_equipment_sales()),
+    html.H4('Specialization Type'),
+    html.P('The visualization shows the bar plot of the type of specialization'),
     dcc.Graph(id='analyse_bar_specialisation_equipment_sales', figure=analyse_bar_specialisation_equipment_sales()),
    ]) 
 
@@ -438,7 +442,12 @@ ip_equipment_details_final = html.Div([
    
     
     # insert code for IP Sales Summary Report visualization here
+    html.H4('Amount vs Date'),
+    html.P('The visualization shows the line plot of Amount and Date of the equipments'),
     dcc.Graph(id='amount_vs_datetime', figure=amount_vs_datetime()),
+    html.H4('Quantity vs Date'),
+    html.P('The visualization shows the line plot of Quantity and Date of the equipments'),
+  
     dcc.Graph(id='quantity_vs_datetime', figure=quantity_vs_datetime()),
     
 
