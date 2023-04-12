@@ -40,7 +40,7 @@ Overall, sales analysis is a critical tool for SIMS Hospital to understand its b
 
 ## Data Architecture
 
-![alt text]()
+![alt text](techarch.jpg)
 
 ## Acknowledgements
 
