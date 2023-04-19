@@ -252,27 +252,27 @@ ip_sales_details = html.Div([
     dcc.Graph(id='discharge-difference', figure=admit_discharge_date_bill_amount_analysis()),
  
     html.H4('Net Amount vs Specialisation'),
-    html.P('The visualization shows the net amount of the hospital being raised based on the Specialization. The filter is used related to the Comopany.'),
+    html.P('The visualization shows the net amount of the hospital being raised based on the Specialization. The filter used is related to the Company.'),
     dcc.Graph(id='ip_netamount_specialisation', figure=ip_netamt_specialisation_bar()),
  
     html.H4('Net Amount vs Category'),
-    html.P('The visualization shows the net amount of the hospital being raised based on the Category. The filter is used related to the Specialization.'),
+    html.P('The visualization shows the net amount of the hospital being raised based on the Category. The filter used is  related to the Specialization.'),
     dcc.Graph(id='ip_netamount_category', figure=ip_netamt_cat_bar()),
 
     html.H4('Net Amount vs Company'),
-    html.P('The visualization shows the net amount of the hospital being raised based on the Company. The filter is used related to the Area/State.'),
+    html.P('The visualization shows the net amount of the hospital being raised based on the Company. The filter used is related to the Area/State.'),
     dcc.Graph(id='ip_netamount_company', figure=ip_net_amt_company_bar()),
     
     html.H4('Package Fees vs Specialisation'),
-    html.P('The visualization shows the Package Fees of the hospital being raised based on the Specialization. The filter is used related to the category.'),
+    html.P('The visualization shows the Package Fees of the hospital being raised based on the Specialization. The filter used is related to the category.'),
     dcc.Graph(id='ip_packagefees_specialisation', figure=ip_package_fees_specialisation_bar()),
     
     html.H4('Package Fees vs category'),
-    html.P('The visualization shows the Package Fees of the hospital being raised based on the category. The filter is used related to the Specialization.'),
+    html.P('The visualization shows the Package Fees of the hospital being raised based on the category. The filter used is related to the Specialization.'),
     dcc.Graph(id='ip_packagefees_category', figure=ip_package_fees_cat_bar()),
     
     html.H4('Package Fees vs Company'),
-    html.P('The visualization shows the Package Fees of the hospital being raised based on the Company. The filter is used related to the Area/State.'),
+    html.P('The visualization shows the Package Fees of the hospital being raised based on the Company. The filter used is related to the Area/State.'),
     dcc.Graph(id='ip_packagefees_company', figure=ip_package_fees_company_bar()),
 ])
 
@@ -313,11 +313,11 @@ ip_sales_report = html.Div([
     html.Br(),
     # insert code for IP Sales Report visualization here 
     html.H4('Bill Amount vs Date'),
-    html.P('The visualization shows the Bill amount of the hospital being raised based on the date time. The filter is used related to the Company. It is a time series analysis.'),
+    html.P('The visualization shows the Bill amount of the hospital being raised based on the date time. The filter used is related to the Company. It is a time series analysis.'),
     dcc.Graph(id='ip_bill_amount_sales_report_company_bar', figure=ip_bill_amount_sales_report_company_bar()),
     
     html.H4('Discount vs Date'),
-    html.P('The visualization shows the Discount of the hospital being raised based on the date time. The filter is used related to the Company. It is a time series analysis.'),
+    html.P('The visualization shows the Discount of the hospital being raised based on the date time. The filter used is related to the Company. It is a time series analysis.'),
     dcc.Graph(id='ip_discount_sales_report_company_bar', figure=ip_discount_sales_report_company_bar()),
 
 ])
@@ -354,12 +354,12 @@ A Plotly bar chart object.
 
 def ip_docfees_surgerydept_bar():
     """This function returns a bar chart created using the Plotly Express library. The chart displays the total doctor fees paid for each type of surgery in the given dataset, grouped by country. The y-axis represents the different types of surgery and the x-axis represents the total doctor fees paid for each surgery type.
-    The color of the bars represents the country where the surgery was performed.
+    The color of the bars represents the doctor who performed the surgery.
 
     Returns:
         A Plotly bar chart object.
     """
-    return px.bar(ip_sales_summary_df,y ='SURGERYTYPE',x='Doctor Fees',color ='Country')
+    return px.bar(ip_sales_summary_df,y ='SURGERYTYPE',x='Doctor Fees',color ='DoctorName')
 
 def ip_food_beverages_pie_chart():
     """
@@ -384,8 +384,7 @@ ip_sales_summary_report = html.Div([
     html.H4('Diagnosis vs pharmacy fees'),
     html.P('The visualization shows the bar plot of pharmacy fees of the hospital and the Diagnosis used.'),
     dcc.Graph(id='ip_pharm_diagnosis_bar', figure=ip_pharm_diagnosis_bar()),
-    
-    
+
     html.H4('Surgery Type vs Doctor fees'),
     html.P('The visualization shows the bar plot of Doctor fees of the hospital and the Surgery Type used.'),
     dcc.Graph(id='ip_docfees_surgerydept_bar', figure=ip_docfees_surgerydept_bar()),
