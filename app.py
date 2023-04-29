@@ -352,8 +352,15 @@ A Plotly bar chart object.
     """
     return px.bar(ip_sales_summary_df,y ='Diagnosis',x='Pharmacy',color ='State')
 
+def ip_bill_surgerydept_bar():
+    """This function returns a pie chart created using the plotly express library. The chart displays the total bill amount for each type of surgery in the given dataset.
+    Returns:
+        A plotly pie chart object.
+    """
+    return px.pie(ip_sales_summary_df,values='Bill Amount',names = 'SURGERYTYPE')
+
 def ip_docfees_surgerydept_bar():
-    """This function returns a bar chart created using the Plotly Express library. The chart displays the total doctor fees paid for each type of surgery in the given dataset, grouped by country. The y-axis represents the different types of surgery and the x-axis represents the total doctor fees paid for each surgery type.
+    """This function returns a bar chart created using the Plotly Express library. The chart displays the total doctor fees paid for each type of surgery in the given dataset. The y-axis represents the different types of surgery and the x-axis represents the total doctor fees paid for each surgery type.
     The color of the bars represents the doctor who performed the surgery.
 
     Returns:
@@ -384,6 +391,10 @@ ip_sales_summary_report = html.Div([
     html.H4('Diagnosis vs pharmacy fees'),
     html.P('The visualization shows the bar plot of pharmacy fees of the hospital and the Diagnosis used.'),
     dcc.Graph(id='ip_pharm_diagnosis_bar', figure=ip_pharm_diagnosis_bar()),
+
+    html.H4('Surgery Type vs Bill amount'),
+    html.P('The visualization shows the bar plot of bill amount of the hospital and the surgery type .'),
+    dcc.Graph(id='ip_bill_surgerydept_bar', figure=ip_bill_surgerydept_bar()),
 
     html.H4('Surgery Type vs Doctor fees'),
     html.P('The visualization shows the bar plot of Doctor fees of the hospital and the Surgery Type used.'),
