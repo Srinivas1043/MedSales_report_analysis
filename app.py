@@ -166,6 +166,15 @@ def ip_netamt_specialisation_bar():
     A Plotly graph object of a horizontal bar chart showing the net amount billed for each medical specialization in the DataFrame.
     """
     return px.bar(ip_sales_details_df,y= 'Specialisation',x='netamount',color ='category')
+def ip_netamt_specialisation_bar1():
+    """
+    Creates a horizontal pie chart using Plotly Express to visualize the net amount billed for each medical specialization in the ip_sales_details_df DataFrame, with the bars colored by specialization itself.
+
+    Returns:
+    --------
+    A Plotly graph object of a horizontal pie chart showing the net amount billed for each medical specialization in the DataFrame.
+    """
+    return px.pie(ip_sales_details_df, names= 'Specialisation',values='netamount')
 
 def ip_netamt_cat_bar():
     """
@@ -251,9 +260,13 @@ ip_sales_details = html.Div([
            of a patient being admitted to the hospital and the related bill amount for the same.'),
     dcc.Graph(id='discharge-difference', figure=admit_discharge_date_bill_amount_analysis()),
  
-    html.H4('Net Amount vs Specialisation'),
+    html.H4('Net Amount vs Specialisation with category'),
     html.P('The visualization shows the net amount of the hospital being raised based on the Specialization. The filter used is related to the Company.'),
     dcc.Graph(id='ip_netamount_specialisation', figure=ip_netamt_specialisation_bar()),
+
+    html.H4('Net Amount vs Specialisation'),
+    html.P('The visualization shows the net amount of the hospital being raised based on the Specialization. The filter used is related to the specialisation.'),
+    dcc.Graph(id='ip_netamount_specialisation', figure=ip_netamt_specialisation_bar1()),
  
     html.H4('Net Amount vs Category'),
     html.P('The visualization shows the net amount of the hospital being raised based on the Category. The filter used is  related to the Specialization.'),
@@ -475,7 +488,7 @@ cards = dbc.Row([
                 [
                      
     html.H4('Net Amount vs Specialisation'),
-    dcc.Graph(id='ip_netamount_specialisation', figure=ip_netamt_specialisation_bar()),
+    dcc.Graph(id='ip_netamount_specialisation', figure=ip_netamt_specialisation_bar1()),
                     dbc.Button("Sales", color="primary", href="/ip_sales_details"),
                 ]
             ),
@@ -495,8 +508,8 @@ cards = dbc.Row([
         dbc.Card(
             dbc.CardBody(
                 [
-          html.H4('Total Amount vs Discount'),
-    dcc.Graph(id='ip_scatter_total_discount',figure=ip_scatter_total_discount()),
+          html.H4('Discount vs Insurance company'),
+    dcc.Graph(id ='ip_bar-chart',figure= ip_discount_bar()),
                     dbc.Button("Discount", color="primary", href="/ip_discount_report"),
                 ]
             ),
