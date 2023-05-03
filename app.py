@@ -473,98 +473,95 @@ cards = dbc.Row([
         dbc.Card(
             dbc.CardBody(
                 [
-                    html.H4("Sales Detail Analysis", className="card-title"),
-                    html.P(f"There are {len(ip_sales_details_df)} rows"),
+                     
+    html.H4('Net Amount vs Specialisation'),
+    dcc.Graph(id='ip_netamount_specialisation', figure=ip_netamt_specialisation_bar()),
                     dbc.Button("Sales", color="primary", href="/ip_sales_details"),
                 ]
             ),
             className="mb-3",
             style={
-                'background-image': 'url("https://www.absolutdata.com/wp-content/uploads/2022/06/Is-Dark-Data-the-Key-to-Transforming-Your-Business-blog.jpg")',
+                'background-color': 'white',
                 'background-size': 'cover',
                 'background-position': 'center',
-                'color': 'white'
+                'color': 'black',
+                 'box-shadow': '0px 2px 10px rgba(0, 0, 0, 0.3)'
             }
         ),
-        width=6,
-        md={'size': 6, 'offset': 0}
+        width=8,
+        md={'size': 8, 'offset': 0}
     ),
     dbc.Col(
         dbc.Card(
             dbc.CardBody(
                 [
-                    html.H4("Discount Report Analysis", className="card-title"),
-                    html.P(f"There are {len(ip_discount_report_df)} rows"),
+          html.H4('Total Amount vs Discount'),
+    dcc.Graph(id='ip_scatter_total_discount',figure=ip_scatter_total_discount()),
                     dbc.Button("Discount", color="primary", href="/ip_discount_report"),
                 ]
             ),
             className="mb-3",
             style={
-                'background-image': 'url("https://www.absolutdata.com/wp-content/uploads/2022/06/Is-Dark-Data-the-Key-to-Transforming-Your-Business-blog.jpg")',
+                  'background-color': 'white',
                 'background-size': 'cover',
                 'background-position': 'center',
-                'color': 'white'
+                'color': 'black',
+                 'box-shadow': '0px 2px 10px rgba(0, 0, 0, 0.3)'
             }
         ),
-        width=6,
-        md={'size': 6, 'offset': 0}
+        width=8,
+        md={'size': 8, 'offset': 0}
     ),
     dbc.Col(
         dbc.Card(
             dbc.CardBody(
                 [
-                    html.H4("Sales Report Analysis", className="card-title"),
-                    html.P(f"There are {len(ip_sales_report_df)} rows"),
+    html.H4('Bill Amount vs Date'),
+                dcc.Graph(id='ip_bill_amount_sales_report_company_bar', figure=ip_bill_amount_sales_report_company_bar()),    
+             
                     dbc.Button("Sales Report", color="primary", href="/ip_sales_report"),
                 ]
             ),
             className="mb-3",
             style={
-                'background-image': 'url("https://www.absolutdata.com/wp-content/uploads/2022/06/Is-Dark-Data-the-Key-to-Transforming-Your-Business-blog.jpg")',
+                           'background-color': 'white',
                 'background-size': 'cover',
                 'background-position': 'center',
-                'color': 'white'
+                'color': 'black',
+                 'box-shadow': '0px 2px 10px rgba(0, 0, 0, 0.3)'
             }
         ),
-        width=6,
-        md={'size': 6, 'offset': 0}
+        width=8,
+        md={'size': 8, 'offset': 0}
     ),
     dbc.Col(
         dbc.Card(
             dbc.CardBody(
                 [
-                    html.H4("Sales Summary Report Analysis", className="card-title"),
-                    html.P(f"There are {len(ip_sales_summary_df)} rows"),
-                    dbc.Button("Sales Summary", color="primary", href="/ip_sales_summary_report"),
+                html.H4('Surgery Type vs Bill amount'),
+    dcc.Graph(id='ip_bill_surgerydept_bar', figure=ip_bill_surgerydept_bar()),        
+    dbc.Button("Sales Summary", color="primary", href="/ip_sales_summary_report"),
                 ]
             ),
             className="mb-3",
             style={
-                'background-image': 'url("https://www.absolutdata.com/wp-content/uploads/2022/06/Is-Dark-Data-the-Key-to-Transforming-Your-Business-blog.jpg")',
+                                 'background-color': 'white',
                 'background-size': 'cover',
                 'background-position': 'center',
-                'color': 'white'
+                'color': 'black',
+                 'box-shadow': '0px 2px 10px rgba(0, 0, 0, 0.3)'
             }
         ),
-        width=6,
-        md={'size': 6, 'offset': 0}
+        width=8,
+        md={'size': 8, 'offset': 0}
     ),
 ], className="mb-4")
 
 cover_image = "https://simshospitals.com/wp-content/uploads/2021/09/SIMS-Logo.png"
 dashboard_home = html.Div([
-    html.H1("Welcome to SIMS Dashboard"),
-        html.Div([
-        html.Img(src=cover_image, style={'width': '100%'})
-    ], style={'width': '80%','height':'40%'}),
-          html.Br(),
-            html.Br(),
-    html.P("SIMS Hospital is a leading healthcare provider in the region, offering a wide range of medical services and treatments to patients. As with any healthcare provider, understanding sales data is critical to the success of the hospital. Sales data can help SIMS Hospital track trends in patient demand, identify areas for improvement in services or marketing, and forecast revenue."),
-    html.P("To make sense of sales data, SIMS Hospital can conduct sales analysis. This involves collecting and analyzing data on patient visits, treatments, and revenue. Sales analysis can help SIMS Hospital identify key metrics such as patient volumes, revenue by department, and average revenue per patient."),
-    html.P("By conducting sales analysis, SIMS Hospital can gain insights into patient behavior, identify trends in revenue and expenses, and optimize resources to improve profitability. Additionally, sales analysis can help SIMS Hospital identify potential areas for growth, such as expanding services in high-demand departments or targeting specific patient demographics."),
-    html.P("Overall, sales analysis is a critical tool for SIMS Hospital to understand its business and make data-driven decisions that improve patient outcomes and financial performance."),
     html.Br(),
-    # insert code for IP Equipment Details visualization here
+    html.Br(),
+    
     cards
 ], className="container")
 
