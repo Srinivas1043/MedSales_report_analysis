@@ -555,6 +555,56 @@ cards = dbc.Row([
         width=8,
         md={'size': 8, 'offset': 0}
     ),
+    
+    
+      dbc.Col(
+        dbc.Card(
+            dbc.CardBody(
+                [
+            html.H4('Specialization Type'),
+    dcc.Graph(id='analyse_bar_specialisation_equipment_sales', figure=analyse_bar_specialisation_equipment_sales()),
+       
+    dbc.Button("IP Equipment Sales", color="primary", href="/ip_equipment_sales_final"),
+                ]
+            ),
+            className="mb-3",
+            style={
+                                 'background-color': 'white',
+                'background-size': 'cover',
+                'background-position': 'center',
+                'color': 'black',
+                 'box-shadow': '0px 2px 10px rgba(0, 0, 0, 0.3)'
+            }
+        ),
+        width=8,
+        md={'size': 8, 'offset': 0}
+    ),
+      
+      
+      
+        dbc.Col(
+        dbc.Card(
+            dbc.CardBody(
+                [
+           html.H4('Amount vs Date'),
+    dcc.Graph(id='amount_vs_datetime', figure=amount_vs_datetime()),        
+    dbc.Button("IP Equipment Details", color="primary", href="/ip_equipment_details_final"),
+                ]
+            ),
+            className="mb-3",
+            style={
+                                 'background-color': 'white',
+                'background-size': 'cover',
+                'background-position': 'center',
+                'color': 'black',
+                 'box-shadow': '0px 2px 10px rgba(0, 0, 0, 0.3)'
+            }
+        ),
+        width=8,
+        md={'size': 8, 'offset': 0}
+    ),
+    
+    
 ], className="mb-4")
 
 cover_image = "https://simshospitals.com/wp-content/uploads/2021/09/SIMS-Logo.png"
