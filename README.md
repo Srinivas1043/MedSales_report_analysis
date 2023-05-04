@@ -18,14 +18,22 @@ Overall, sales analysis is a critical tool for SIMS Hospital to understand its b
 1. Clone the repository.
 
 `git clone https://github.com/RamyaRagu2506/MedSales_report_analysis.git`
+![alt text](sims1.png)
 
 2. Navigate to the root directory of the project.
 
 `cd MedSales_report_analysis`
+![alt text](sims2.png)
 
 3. Install the required packages.
 
 `pip install -r requirements.txt`
+![alt text](sims4.png)
+
+4. Install Visual Studio Code if it is not installed on the system. Go to https://code.visualstudio.com/download for installation
+
+5. Use code . to open the python library codebased in VS Code.
+![alt text](sims3.png)
 
 ## Usage
 
