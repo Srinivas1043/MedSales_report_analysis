@@ -17,11 +17,11 @@ Overall, sales analysis is a critical tool for SIMS Hospital to understand its b
 
 1. Clone the repository.
 
-`git clone https://github.com/your-username/your-repository.git`
+`git clone https://github.com/RamyaRagu2506/MedSales_report_analysis.git`
 
 2. Navigate to the root directory of the project.
 
-`cd your-repository`
+`cd MedSales_report_analysis`
 
 3. Install the required packages.
 
