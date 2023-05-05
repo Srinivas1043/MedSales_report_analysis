@@ -57,7 +57,6 @@ Overall, sales analysis is a critical tool for SIMS Hospital to understand its b
 ![alt text](git2.PNG)
 ![alt text](git3.PNG)
 ![alt text](git4.PNG)
-![alt text](git5.PNG)
 
 13. Further once code is updated, push the feature branch to main/master and develop/development branch in the repo. 
 14. Finally, once the branches are updated, delete the feature branch for clean and tidy repository.
