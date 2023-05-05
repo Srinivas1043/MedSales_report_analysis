@@ -53,8 +53,15 @@ Overall, sales analysis is a critical tool for SIMS Hospital to understand its b
 ## Code and Deployment of New features/bug fixes. 
 
 12. Make sure to create an issue and link the new branch to it. 
+![alt text](git1.PNG)
+![alt text](git2.PNG)
+![alt text](git3.PNG)
+![alt text](git4.PNG)
+
 13. Further once code is updated, push the feature branch to main/master and develop/development branch in the repo. 
 14. Finally, once the branches are updated, delete the feature branch for clean and tidy repository.
+![alt text](git5.PNG)
+![alt text](git6.PNG)
 15. Make sure the issue is also completed and fixed as per the requirement.
 
 ![alt text](https://uploads.sitepoint.com/wp-content/uploads/2019/06/155993572204-gitflow.png)
